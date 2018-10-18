@@ -13,6 +13,7 @@ Presently, the supported websocket configuration is [ActionCable](https://guides
 There are a few items of note that one should consider before using these cookbooks:
 
 * As is the case with all custom cookbooks that we provide, these cookbooks are not officially supported. That said, if you try them out and have problems, we would very much appreciate it if you would create an issue on the repo, submit a support ticket, or both.
+* Given the above, it's worth noting that these are generalized forms of the cookbooks we use for the app that runs our monitoring system, and it has also been tested with a version of the [Rails ActionCable Examples](https://github.com/rails/actioncable-examples) with updated dependencies.
 * At present, the only websocket system that is supported is Rails' own `ActionCable`.
 * This requires the addition of an `upstream` in the nginx config. This is done in `/etc/nginx/http-custom.conf`, so if you are already adding a custom configuration to that file, you'll want to merge it with the template in `cookbooks/custom-websocket/templates/default/upstreams.conf.erb`.
 * Much like above, the `custom-env_vars` cookbook is also used to set up some environment variables to help your application communicate with the websocket server. If you already use this cookbook, you will most likely want to merge this as well.
