@@ -1,0 +1,6 @@
+<%= @environment %>:
+  adapter: redis
+  url: <%= @url %>
+<% if @channel %>
+  channel_prefix: <%= @channel %>
+<% end %>

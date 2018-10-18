@@ -8,6 +8,14 @@ Presently, the supported websocket configuration is [ActionCable](https://guides
 
 *Note: While there's no reason that you couldn't customize the cookbooks further to allow for a multi-application setup, these cookbooks are meant to act on an environment that provides only a single Application.*
 
+## Caveats ##
+
+There are a few items of note that one should consider before using these cookbooks:
+
+* At present, the only websocket system that is supported is Rails' own `ActionCable`
+* This requires the addition of an `upstream` in the nginx config. This is done in `/etc/nginx/http-custom.conf`, so if you are already adding a custom configuration to that file, you'll want to merge it with the template in `cookbooks/custom-websocket/templates/default/upstreams.conf.erb`
+* This requires a few changes to your application (detailed below in the "Installation" section, step 7)
+
 ## Installation ##
 
 1. Boot an environment using the stable-v5 stack.
@@ -16,6 +24,7 @@ Presently, the supported websocket configuration is [ActionCable](https://guides
 4. Customize the websocket configuration
 5. Upload the custom chef recipes from your local machine.
 6. Click Apply on the environment page on Engine Yard Cloud
+7. Update and deploy your application
 
 ### 1. Boot a stable-v5 environment ###
 
@@ -49,6 +58,11 @@ On your local machine, `cd` to the directory that contains your `cookbooks` dire
 ey-core recipes upload -c account_name -e environment_name
 ```
 
-### 5. Click Apply ###
+### 6. Click Apply on the environment page on Engine Yard Cloud ###
 
 Go to the environment page on Engine Yard Cloud. Click the Apply button. This will run the main chef recipes and custom chef recipes on a *single* chef run.
+
+### 7. Update and deploy your application ###
+
+TODO: write this
+

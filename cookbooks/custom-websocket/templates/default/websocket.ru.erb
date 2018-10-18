@@ -1,0 +1,4 @@
+require ::File.expand_path("/data/<%= @app %>/current/config/environment")
+Rails.application.eager_load!
+
+run ActionCable.server
