@@ -104,7 +104,7 @@ end
 
 In order for the app to know where it should tell clients to connect for websocket interactions, you need to configure this in your application's environment-specific configuration. This setup is intended primarily for production use cases, so it's advised that you configure this in `config/environments/production.rb`, but you might also want to do this for `config/environments/staging.rb` if you are using a "staging" environment.
 
-The values that you'll want to configure are the `url` and `allowed_request_origins` for ActionCable. If you're not using env vars as suggested above
+The values that you'll want to configure are the `url` and `allowed_request_origins` for ActionCable. If you're not using env vars as suggested above, that might look like this:
 
 ```ruby
 config.action_cable.url = 'ws://myapp.com/cable'
