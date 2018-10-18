@@ -1,0 +1,6 @@
+check process websocket_<%= @app %>_<%= @port %>
+  with pidfile /var/run/engineyard/<%= @app %>/websocket.pid
+  start program = "/engineyard/bin/websocket_<%= @app %> start" as uid deploy and gid deploy
+  stop program = "/engineyard/bin/websocket_<%= @app %> stop" as uid deploy and gid deploy
+  if mem > 500.0 MB for 2 cycles then restart
+  group websocket_<%= @app %>

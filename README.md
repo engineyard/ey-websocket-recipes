@@ -16,6 +16,7 @@ Presently, the supported websocket configuration is [ActionCable](https://guides
 4. Customize the websocket configuration
 5. Upload the custom chef recipes from your local machine.
 6. Click Apply on the environment page on Engine Yard Cloud
+7. Update and deploy your application
 
 ### 1. Boot a stable-v5 environment ###
 
@@ -49,6 +50,11 @@ On your local machine, `cd` to the directory that contains your `cookbooks` dire
 ey-core recipes upload -c account_name -e environment_name
 ```
 
-### 5. Click Apply ###
+### 6. Click Apply on the environment page on Engine Yard Cloud ###
 
 Go to the environment page on Engine Yard Cloud. Click the Apply button. This will run the main chef recipes and custom chef recipes on a *single* chef run.
+
+### 7. Update and deploy your application ###
+
+TODO: write this
+
