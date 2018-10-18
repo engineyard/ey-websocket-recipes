@@ -84,6 +84,8 @@ Go to the environment page on Engine Yard Cloud. Click the Apply button. This wi
 
 The process so far has put the groundwork in place to be able to run a standalone websocket (ActionCable) server, but there are a few changes that are necessary to your application in order to make this setup work as intended. This mostly comes down to configuring your routes, configuring ActionCable within the app, and adding some deploy hooks to ensure that some configs are in place and that the websocket server gets restarted on each deploy.
 
+After you make these changes to your application, you should push to your upstream git repo, deploy, and test the websocket-enabled portions of your app.
+
 #### Routes ####
 
 In development, it's usually advised that you mount ActionCable directly in your app's `config/routes.rb` via `mount ActionCable.server => '/cable'`. Unfortunately, that may conflict with the configuration that allows for an external websocket server to be used. That being the case, if you want to still have a handy `/cable` mountpoint in development, you might do that like so:
