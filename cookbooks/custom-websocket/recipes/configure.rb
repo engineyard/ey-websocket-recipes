@@ -44,7 +44,7 @@ end
 # Set up the websocket upstream and location in nginx for app instances
 if nginx_roles.include? node['dna']['instance_role']
   # Set up the upstream
-  template "/data/nginx/servers/#{app}/upstreams.conf" do
+  template "/data/nginx/http-custom.conf" do
     source 'upstreams.conf.erb'
     owner 'deploy'
     group 'deploy'
