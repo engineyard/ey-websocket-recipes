@@ -12,9 +12,10 @@ Presently, the supported websocket configuration is [ActionCable](https://guides
 
 There are a few items of note that one should consider before using these cookbooks:
 
-* At present, the only websocket system that is supported is Rails' own `ActionCable`
-* This requires the addition of an `upstream` in the nginx config. This is done in `/etc/nginx/http-custom.conf`, so if you are already adding a custom configuration to that file, you'll want to merge it with the template in `cookbooks/custom-websocket/templates/default/upstreams.conf.erb`
-* This requires a few changes to your application (detailed below in the "Installation" section, step 7)
+* At present, the only websocket system that is supported is Rails' own `ActionCable`.
+* This requires the addition of an `upstream` in the nginx config. This is done in `/etc/nginx/http-custom.conf`, so if you are already adding a custom configuration to that file, you'll want to merge it with the template in `cookbooks/custom-websocket/templates/default/upstreams.conf.erb`.
+* Much like above, the `custom-env_vars` cookbook is also used to set up some environment variables to help your application communicate with the websocket server. If you already use this cookbook, you will most likely want to merge this as well.
+* This requires a few changes to your application (detailed below in the "Installation" section, step 7).
 
 ## Installation ##
 
@@ -48,7 +49,24 @@ If you have other custom coobooks for your environment, you'll need to do a bit 
 
 ### 4. Customize the websocket configuration ###
 
+There are a few values that need to be changed across the cookbooks in this repo to actually use them with your app:
+
+#### custom-websocket ####
+
+In `cookbooks/custom-websocket/attributes/default.rb`, you'll want to change at least the following values to match your application: `websocket['app']` and `websocket['mountpoint']`.
+
+The first of these is the name of your application (as it appears in the /data directory on your app instances).
+
+The second is the URL path to which the websocket server should be mounted. Most typically, this is "/cable" for ActionCable-powered apps, but you can change this to just about anything that you'd like, so long as you configure your application to use the proper URL for cable connections.
 TODO: write this
+
+#### custom-env_vars ####
+
+While not *strictly* necessary, we've found that it works pretty well to configure the production cable URL and allowed hosts via environment variables. to that end, particularly if you're following this guide all the way through, you'll want to update `cookbooks/custom-env_vars/files/default/env.custom` with good values for `WS_URL` and `ALLOWED_REQUEST_ORIGIN`.
+
+The first of these is the fully-qualified `ws` URL that clients should use to interact with your websocket server (ie 'ws://myapp.com/cable').
+
+The second of these is basically just your app's primary URL (ie 'http://myapp.com').
 
 ### 5. Upload the custom chef recipes ###
 
